@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoppingapp/helpers/custom_route.dart';
 
 
 import '../screens/cart_screen.dart';
@@ -35,7 +36,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.indigo,
           accentColor: Colors.deepOrange,
-          fontFamily:'Lato'
+          fontFamily:'Lato',
+          //evey route has same animation
+          // pageTransitionsTheme: PageTransitionsTheme( 
+          //   builders: {
+          //     TargetPlatform.android:CustomPageTransitionBuiler(), 
+          //   }
+          // ),
         ),
         home: ProductOverviewScreen(),
         routes: {

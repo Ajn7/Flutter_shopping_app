@@ -30,12 +30,18 @@ class ProductItem extends StatelessWidget {
                arguments:product.id, 
                 );
             },
-            child: FadeInImage.assetNetwork(
-              image:product.imageUrl,
-              fit:BoxFit.cover,
-              placeholder:'assets/images/nonetwork.png',
+            // child: FadeInImage.assetNetwork(
+            //   image:product.imageUrl,
+            //   fit:BoxFit.cover,
+            //   placeholder:'assets/images/nonetwork.png',
              
+            //   ),
+            child: Hero(
+              tag:product.id,
+              child: FadeInImage(placeholder: AssetImage('assets/images/nonetwork.png',),
+              image:NetworkImage(product.imageUrl,),
               ),
+            )
           ),
             footer: GridTileBar(
               backgroundColor: Colors.black87,
@@ -44,15 +50,15 @@ class ProductItem extends StatelessWidget {
                 textAlign: TextAlign.center,
                 ),
                 leading:  Consumer<Product>(  // now only iconButton rebuilds
-                  builder: (ctx,product,child)=>IconButton(
-                  onPressed: (){
-                    product.toggleFavouriteStatus();
-                  },
+                  builder: (ctx, product, _) => IconButton(
                   icon: Icon(
-                    product.isFavourite ?Icons.favorite:Icons.favorite_border,
+                    product.isFavorite ? Icons.favorite : Icons.favorite_border,
                   ),
-                  color:Theme.of(context).accentColor
-                  ),
+                  color: Theme.of(context).accentColor,
+                  onPressed: () {
+                    product.toggleFavoriteStatus();
+                  },
+                ),
                 ),
                 trailing: IconButton(
                   icon:Icon(
